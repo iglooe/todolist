@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta data for the HTML document -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <!-- Link to the stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Import the font from Google Fonts -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;900&family=Secular+One&display=swap");
+    </style>
+  </head>
+
+  <body>
+    <!-- Heading for the To Do List -->
+    <div class="box" id="heading">
+      <h1><%= kindOfDay %></h1>
+    </div>
+
+    <div class="box">
+      <!-- Loop through each item in the list -->
+      <% for(var i = 0; i < newListItems.length; i++) { %>
+      <div class="item">
+        <!-- Checkbox for each item -->
+        <input type="checkbox" />
+        <!-- Display the item text -->
+        <p><%= newListItems[i] %></p>
+      </div>
+
+      <% } %>
+      <!-- Form to add a new item to the list -->
+      <form class="" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" />
+        <button type="submit">+</button>
+      </form>
+    </div>
+  </body>
+</html>
