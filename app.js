@@ -19,14 +19,14 @@ app.set("view engine", "ejs");
 // Handle GET requests to the "/" route
 app.get("/", (req, res) => {
   // Create a new date object
-  var today = new Date();
+  let today = new Date();
 
   // Get the current day
-  var currentDay = today.getDay();
+  let currentDay = today.getDay();
   var day = "";
 
   // Set options for formatting the date
-  var options = {
+  let options = {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -43,7 +43,6 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   let item = req.body.newItem;
-  console.log(req.body);
 
   if (req.body.list === "Work List") {
     workItems.push(item);
