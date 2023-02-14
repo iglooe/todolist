@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 // Store list items in an array
-var items = [];
+let items = [];
+let workItems = [];
 
 // Use body-parser middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,19 +36,30 @@ app.get("/", (req, res) => {
   var day = today.toLocaleDateString("en-US", options);
 
   // Render the "list" template and pass in the current day and list items
-  res.render("list", { kindOfDay: day, newListItems: items });
+  res.render("list", { listTitle: day, newListItems: items });
 });
 
 // Handle POST requests to the "/" route
+
 app.post("/", (req, res) => {
-  // Get the new item from the request body
-  var item = req.body.newItem;
+  let item = req.body.newItem;
+  console.log(req.body);
 
-  // Add the item to the list
-  items.push(item);
+  if (req.body.list === "Work List") {
+    workItems.push(item);
+    res.redirect("/work");
+  } else {
+    items.push(item);
+    res.redirect("/");
+  }
+});
 
-  // Redirect the user back to the home page
-  res.redirect("/");
+app.get("/work", (req, res) => {
+  res.render("list", { listTitle: "Work List", newListItems: workItems });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about");
 });
 
 // Start the Express app and listen on port 3000
